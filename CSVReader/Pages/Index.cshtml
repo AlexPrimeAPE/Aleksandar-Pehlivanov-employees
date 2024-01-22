@@ -1,0 +1,64 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Please Insert Correct CSV File</p>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+      
+        <input asp-for="EmployeeProjectCsv" class="form-control" />
+        <span asp-validation-for="EmployeeProjectCsv" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>
+<div id="Error" style="color:red;">
+    <p> @Model.ErrorText </p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                EmpOne
+            </th>
+            <th>
+                EmpTwo
+            </th>
+            <th>
+                Project
+            </th>
+            <th>
+                Days Together
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.commonProject)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpOne)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpTwo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeTogether)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
